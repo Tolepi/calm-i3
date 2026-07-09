@@ -1,0 +1,295 @@
+#  Bienvenido a mi configuracion de i3! muy minimal y eso lol ayuda me estan embargando la casa
+
+###############################################################
+# MOD KEY
+#
+# Usaremos la tecla Super (Windows).
+###############################################################
+
+set $mod Mod4
+
+###############################################################
+# FUENTE
+#
+# Iosevka Term Light se parece muchísimo a la captura de la que me base lol se esta llendo el texto
+###############################################################
+
+font pango:Iosevka Term Light 10
+
+###############################################################
+# APARIENCIA DE LAS VENTANAS
+###############################################################
+
+# Sin bordes, porque no me quiero romper la cabeza con hex
+default_border none
+default_floating_border none
+for_window [class=".*"] border none
+
+# Gaps y eso lol
+gaps inner 4
+gaps outer 4
+
+###############################################################
+# COMPORTAMIENTO
+###############################################################
+
+focus_follows_mouse no
+mouse_warping none
+
+floating_modifier $mod
+
+###############################################################
+# LAYOUT POR DEFECTO
+###############################################################
+
+workspace_layout default
+
+default_orientation horizontal
+
+###############################################################
+# WORKSPACES
+###############################################################
+
+set $ws1 "1"
+set $ws2 "2"
+set $ws3 "3"
+set $ws4 "4"
+set $ws5 "5"
+set $ws6 "6"
+set $ws7 "7"
+set $ws8 "8"
+set $ws9 "9"
+
+bindsym $mod+1 workspace $ws1
+bindsym $mod+2 workspace $ws2
+bindsym $mod+3 workspace $ws3
+bindsym $mod+4 workspace $ws4
+bindsym $mod+5 workspace $ws5
+bindsym $mod+6 workspace $ws6
+bindsym $mod+7 workspace $ws7
+bindsym $mod+8 workspace $ws8
+bindsym $mod+9 workspace $ws9
+
+bindsym $mod+Shift+1 move container to workspace $ws1
+bindsym $mod+Shift+2 move container to workspace $ws2
+bindsym $mod+Shift+3 move container to workspace $ws3
+bindsym $mod+Shift+4 move container to workspace $ws4
+bindsym $mod+Shift+5 move container to workspace $ws5
+bindsym $mod+Shift+6 move container to workspace $ws6
+bindsym $mod+Shift+7 move container to workspace $ws7
+bindsym $mod+Shift+8 move container to workspace $ws8
+bindsym $mod+Shift+9 move container to workspace $ws9
+
+###############################################################
+#                                                             #
+#                  ATAJOS DE TECLADO                          #
+#                                                             #
+###############################################################
+
+###############################################################
+# TERMINAL
+#
+# La aplicación que más vas a usar.
+###############################################################
+
+set $term alacritty
+
+bindsym $mod+Return exec $term
+
+###############################################################
+# LANZADOR
+#
+# Rofi será nuestro menú de aplicaciones.
+###############################################################
+
+set $menu rofi -show drun
+
+bindsym $mod+d exec $menu
+
+###############################################################
+# NAVEGADOR
+###############################################################
+
+bindsym $mod+b exec firefox
+
+###############################################################
+# EXPLORADOR DE ARCHIVOS
+###############################################################
+
+bindsym $mod+e exec alacritty -e nnn
+
+###############################################################
+# BLOQUEAR PANTALLA
+###############################################################
+
+bindsym $mod+Shift+x exec i3lock
+
+###############################################################
+# RECARGAR I3
+###############################################################
+
+bindsym $mod+Shift+r reload
+
+###############################################################
+# REINICIAR I3
+###############################################################
+
+bindsym $mod+Shift+c restart
+
+###############################################################
+# CERRAR VENTANA
+###############################################################
+
+bindsym $mod+q kill
+
+###############################################################
+# PANTALLA COMPLETA
+###############################################################
+
+bindsym $mod+f fullscreen toggle
+
+###############################################################
+# LAYOUT POR DEFECTO
+###############################################################
+
+bindsym Print exec flameshot gui
+
+###############################################################
+# FLOTANTE
+###############################################################
+
+bindsym $mod+Shift+space floating toggle
+
+###############################################################
+# CAMBIAR ENTRE TILE/FLOAT
+###############################################################
+
+bindsym $mod+space focus mode_toggle
+
+###############################################################
+# FOCUS
+#
+# Vim motions.
+###############################################################
+
+bindsym $mod+h focus left
+bindsym $mod+j focus down
+bindsym $mod+k focus up
+bindsym $mod+l focus right
+
+bindsym $mod+Left focus left
+bindsym $mod+Down focus down
+bindsym $mod+Up focus up
+bindsym $mod+Right focus right
+
+###############################################################
+# MOVER VENTANAS
+###############################################################
+
+bindsym $mod+Shift+h move left
+bindsym $mod+Shift+j move down
+bindsym $mod+Shift+k move up
+bindsym $mod+Shift+l move right
+
+bindsym $mod+Shift+Left move left
+bindsym $mod+Shift+Down move down
+bindsym $mod+Shift+Up move up
+bindsym $mod+Shift+Right move right
+
+###############################################################
+# SPLIT
+###############################################################
+
+bindsym $mod+v split v
+bindsym $mod+s split h
+
+###############################################################
+# LAYOUTS
+###############################################################
+
+bindsym $mod+w layout tabbed
+bindsym $mod+a layout stacking
+bindsym $mod+t layout toggle split
+
+###############################################################
+# CONTENEDOR PADRE
+###############################################################
+
+bindsym $mod+Shift+a focus parent
+
+###############################################################
+# SCRATCHPAD
+#
+# Una ventana "oculta" para tener utilidades rápidas.
+###############################################################
+
+bindsym $mod+Shift+minus move scratchpad
+bindsym $mod+minus scratchpad show
+
+###############################################################
+#                                                             #
+#                  INICIO AUTOMÁTICO                          #
+#                                                             #
+###############################################################
+
+#
+# Cada vez que i3 inicia, estos programas se ejecutan.
+# Intentamos mantener el escritorio completamente limpio.
+#
+
+###############################################################
+# Wallpaper
+###############################################################
+
+exec_always --no-startup-id feh --bg-fill ~/Descargas/minimal.png
+
+###############################################################
+# Barra
+###############################################################
+
+exec_always --no-startup-id ~/.config/polybar/launch.sh
+
+###############################################################
+# Notificaciones
+###############################################################
+
+exec --no-startup-id dunst
+
+###############################################################
+# Portapapeles
+###############################################################
+
+exec --no-startup-id copyq
+
+###############################################################
+# Agente de autenticación
+###############################################################
+
+exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
+
+###############################################################
+# Compositor
+#
+# No iniciaremos picom porque es mierda.
+# Queremos exactamente cero transparencias.
+###############################################################
+
+# exec --no-startup-id picom PICOM ES KKKKK BASURA ZZZZ LOL #roasted
+
+###############################################################
+# Numlock
+###############################################################
+
+exec --no-startup-id numlockx on
+
+###############################################################
+#                                                             #
+#                REGLAS DE VENTANAS                           #
+#                                                             #
+###############################################################
+#
+# Todas las ventanas flotantes aparecerán centradas.
+#
+
+for_window [floating] move position center
+

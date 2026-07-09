@@ -1,0 +1,123 @@
+configuration {
+    modi: "drun,run";
+    show-icons: false;
+
+    font: "Iosevka Term Light 10";
+
+    terminal: "alacritty";
+
+    drun-display-format: "{name}";
+
+    sidebar-mode: false;
+
+    cycle: true;
+
+    hover-select: false;
+
+    disable-history: false;
+}
+
+* {
+    background: #F3EFE3;
+    foreground: #202020;
+
+    selected-background: #111111;
+    selected-foreground: #F3EFE3;
+
+    border: #F3EFE3;
+
+    text-color: @foreground;
+
+    background-color: @background;
+}
+
+window {
+    location: center;
+    anchor: center;
+
+    width: 32%;
+    border: 1px;
+    border-color: @border;
+
+    background-color: @background;
+
+    padding: 18px;
+}
+
+mainbox {
+    spacing: 14px;
+}
+
+inputbar {
+    children: [prompt, entry];
+
+    spacing: 8px;
+
+    background-color: transparent;
+}
+
+prompt {
+    text-color: #666666;
+
+    background-color: transparent;
+
+    padding: 0;
+
+    str: ">";
+}
+
+entry {
+    expand: true;
+
+    background-color: transparent;
+
+    text-color: @foreground;
+
+    placeholder: "Search...";
+}
+
+message {
+    enabled: false;
+}
+
+listview {
+
+    columns: 1;
+
+    lines: 8;
+
+    spacing: 4px;
+
+    fixed-height: false;
+
+    dynamic: true;
+
+    scrollbar: false;
+}
+
+element {
+
+    padding: 5px;
+
+    background-color: transparent;
+
+    text-color: @foreground;
+}
+
+element selected {
+
+    background-color: @selected-background;
+
+    text-color: @selected-foreground;
+}
+
+element-text {
+
+    background-color: inherit;
+
+    text-color: inherit;
+}
+
+scrollbar {
+    enabled: false;
+}
